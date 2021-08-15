@@ -1,0 +1,147 @@
+﻿<Window x:Class="_Betternotes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_Betternotes"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="800" Height="490" SizeChanged="ON_RESIZE">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.01" Color="White"></SolidColorBrush>
+    </Window.Background>
+    <Grid Name="Gridd">
+        <!-- TOP MENUS -->
+        <Rectangle Name="Back" Width="800" Height="460" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="0, 30, 0, 0">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="White"></SolidColorBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image Name="TsTopBar" Source="Images/COLOURFULBAR.png" HorizontalAlignment="Left" Width="4320" Height="30"
+               VerticalAlignment="Top" MouseDown="WINDOW_DRAG"></Image>
+        
+        <Button Name="TsNew" Click="TS_SAVE_ONCLICK" ToolTip="Creates a new file" HorizontalAlignment="Left" VerticalAlignment="Top"
+                Margin="5, 5, 0, 0" Height="20" Width="40" Foreground="White" BorderThickness="0"
+                MouseEnter="SET_BLACK_TEXT" MouseLeave="SET_WHITE_TEXT">New
+            <Button.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="TsOpen" Click="TS_OPEN_ONCLICK" ToolTip="Opens an existing file" HorizontalAlignment="Left" VerticalAlignment="Top"
+                Margin="45, 5, 0, 0" Height="20" Width="45" Foreground="White" BorderThickness="0"
+                MouseEnter="SET_BLACK_TEXT" MouseLeave="SET_WHITE_TEXT">Open
+            <Button.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="TsSave" Click="TS_SAVE_ONCLICK" ToolTip="Saves the open file" HorizontalAlignment="Left" VerticalAlignment="Top"
+                Margin="90, 5, 0, 0" Height="20" Width="45" Foreground="White" BorderThickness="0"
+                MouseEnter="SET_BLACK_TEXT" MouseLeave="SET_WHITE_TEXT">Save
+            <Button.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        
+        <Button Name="TbMin" Click="MINIMISE_CLICK" ToolTip="Minimises the app" BorderThickness="0"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 60, 0" Height="30" Width="30">
+            <Image Source="Images/White_-.png"/>
+            <Button.Background>
+                <SolidColorBrush Opacity="0.2" Color="Transparent"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="TbMax" Click="MAXIMISE_CLICK" ToolTip="Maximises the app" BorderThickness="0"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 30, 0" Height="30" Width="30">
+            <Image Source="Images/White_O.png"/>
+            <Button.Background>
+                <SolidColorBrush Opacity="0.2" Color="Transparent"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        <Button Name="TbClose" Click="CLOSE_CLICK" ToolTip="Closes the app" BorderThickness="0"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 0, 0" Height="30" Width="30">
+            <Image Source="Images/White_X.png"/>
+            <Button.Background>
+                <SolidColorBrush Opacity="0.2" Color="Transparent"></SolidColorBrush>
+            </Button.Background>
+        </Button>
+        
+        <!-- MAIN UI -->
+        <Label Margin="10, 30, 0, 0" Name="MuToolboxLabel" HorizontalAlignment="Left" VerticalAlignment="Top"
+               Height="45" Width="190" Content="Files" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               FontSize="20" BorderThickness="0"></Label>
+        <ListBox Margin="10, 75, 0, 0" Name="MuFileList" HorizontalAlignment="Left" VerticalAlignment="Top"
+                 Width="200" Height="410">
+        </ListBox>
+        <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Width="580" Height="280"
+                    Margin="215, 40, 10, 0" Name="MuEditor">
+            <TabItem Header="Notes">
+                <RichTextBox Name="RichTextBox1A" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+            </TabItem>
+            <TabItem Header="Images">
+                <Image Name="ImageDisplay1A" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    
+                </Image>
+            </TabItem>
+            <TabItem Header="Audio">
+                <StackPanel>
+                    <Label Name="AudioPlayer2A" Margin="10, 0, 10, 0" Height="40"
+                           HorizontalAlignment="Left" Content="No file open" VerticalAlignment="Top"></Label>
+                    <Button Name="AudioPlayer2D" Margin="10, 0, 0, 0" Height="25" Width="80"
+                            Content="Start" Click="AUDIO_PLAY" HorizontalAlignment="Left"
+                            VerticalAlignment="Top"></Button>
+                    <Button Name="AudioPlayer2B" Margin="100, -25, 0, 0" Height="25" Width="80"
+                            Content="Pause" Click="AUDIO_PAUSE" HorizontalAlignment="Left"
+                            VerticalAlignment="Top"></Button>
+                    <Button Name="AudioPlayer2C" Margin="190, -25, 0, 0" Height="25" Width="80"
+                            Content="Stop" Click="AUDIO_STOP" HorizontalAlignment="Left"
+                            VerticalAlignment="Top"></Button>
+                    <Button Name="AudioPlayer2E" Margin="10, 10, 0, 0" Height="25" Width="80"
+                            Content="- Volume -" Click="AUDIO_VOLUME_LOWER" HorizontalAlignment="Left"></Button>
+                    <Label Name="AudioPlayer3A" Margin="100, -25, 0, 0" Height="25" Width="80"
+                           Content="50%" HorizontalAlignment="Left"
+                           HorizontalContentAlignment="Center"></Label>
+                    <Button Name="AudioPlayer2F" Margin="190, -25, 0, 0" Height="25" Width="80"
+                            Content="+ Volume +" Click="AUDIO_VOLUME_RAISE" HorizontalAlignment="Left"></Button>
+                    <Button Name="AudioPlayer2G" Margin="280, -25, 0, 0" Height="25" Width="80"
+                            Content="/ Mute /" Click="AUDIO_VOLUME_MUTE" HorizontalAlignment="Left"></Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Videos">
+                <StackPanel>
+                    <MediaElement Name="VideoPlayer1A" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                  LoadedBehavior="Manual" UnloadedBehavior="Manual"></MediaElement>
+                    <Label Name="VideoPlayer2A" Margin="10, 0, 10, 0" Height="40"
+                           HorizontalAlignment="Left" Content="No file open" VerticalAlignment="Top"></Label>
+                    <Button Name="VideoPlayer2B" Margin="10, 0, 0, 0" Height="25" Width="80"
+                            Content="Start" Click="VIDEO_PLAY" HorizontalAlignment="Left"
+                            VerticalAlignment="Top"></Button>
+                    <Button Name="VideoPlayer2C" Margin="100, -25, 0, 0" Height="25" Width="80"
+                            Content="Pause" Click="VIDEO_PAUSE" HorizontalAlignment="Left"
+                            VerticalAlignment="Top"></Button>
+                    <Button Name="VideoPlayer2D" Margin="190, -25, 0, 0" Height="25" Width="80"
+                            Content="Stop" Click="VIDEO_STOP" HorizontalAlignment="Left"
+                            VerticalAlignment="Top"></Button>
+                    <Button Name="VideoPlayer2E" Margin="10, 10, 0, 0" Height="25" Width="80"
+                            Content="- Volume -" Click="VIDEO_VOLUME_LOWER" HorizontalAlignment="Left"></Button>
+                    <Label Name="VideoPlayer3A" Margin="100, -25, 0, 0" Height="25" Width="80"
+                           Content="50%" HorizontalAlignment="Left"
+                           HorizontalContentAlignment="Center"></Label>
+                    <Button Name="VideoPlayer2F" Margin="190, -25, 0, 0" Height="25" Width="80"
+                            Content="+ Volume +" Click="VIDEO_VOLUME_RAISE" HorizontalAlignment="Left"></Button>
+                    <Button Name="VideoPlayer2G" Margin="280, -25, 0, 0" Height="25" Width="80"
+                            Content="/ Mute /" Click="VIDEO_VOLUME_MUTE" HorizontalAlignment="Left"></Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        
+        <!-- AUXILIARY ITEMS -->
+        <Image Source="Images/Resize.png" Width="16" Height="16" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+               Stretch="Fill" Margin="0, 0, 0, 0" Name="AxResize"
+               PreviewMouseLeftButtonDown="WINDOW_RESIZE"></Image>
+    </Grid>
+</Window>
